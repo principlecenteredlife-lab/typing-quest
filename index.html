@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>タイピングクエスト - 無料ブラインドタッチ練習RPG</title>
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg">
+<meta name="theme-color" content="#1f2347">
+</head>
+<body>
+<header>
+  <h1>⚔️ タイピングクエスト</h1>
+  <nav>
+    <button data-go="town">🏠 街</button>
+    <button data-go="shop">🛒 ショップ</button>
+    <button data-go="analysis">📊 分析</button>
+    <button id="muteBtn"></button>
+  </nav>
+  <div id="status"></div>
+</header>
+
+<main>
+  <!-- 街 -->
+  <section id="town" class="screen">
+    <h2>冒険の街</h2>
+    <p>敵を倒して報酬を稼ぎ、装備を整えて奥地へ進もう。ホームポジション（F・J）に指を置いて、手元を見ずに打とう！</p>
+    <p id="touchNote" style="display:none;color:#ffd866">⌨️ このゲームはキーボードで遊びます。パソコンで開いてね！</p>
+    <div id="stageList"></div>
+    <h3>特訓</h3>
+    <button id="weakTrain">🎯 苦手キー特訓（分析結果から自動出題）</button>
+  </section>
+
+  <!-- 戦闘 -->
+  <section id="battle" class="screen">
+    <div class="bars">
+      <div>👤 <span id="pHpText"></span><div class="bar"><div id="pHp"></div></div></div>
+      <div><span id="eName"></span> <span id="eHpText"></span><div class="bar"><div id="eHp" class="red"></div></div></div>
+    </div>
+    <div id="enemy">👾</div>
+    <div id="msg"></div>
+    <div id="word"><div id="jp"></div><div id="romaji"></div></div>
+    <div id="combo"></div>
+    <div id="kbd"></div>
+    <button id="flee">逃げる (Esc)</button>
+  </section>
+
+  <!-- ショップ -->
+  <section id="shop" class="screen">
+    <h2>ショップ</h2>
+    <h3>武器（攻撃力UP）</h3><div id="weapons"></div>
+    <h3>防具（防御力UP）</h3><div id="armors"></div>
+  </section>
+
+  <!-- 分析 -->
+  <section id="analysis" class="screen">
+    <h2>タイピング分析</h2>
+    <div id="history"></div>
+    <div id="report"></div>
+    <div id="heat"></div>
+    <h3>アドバイス</h3><ul id="advice"></ul>
+    <h3>データ</h3>
+    <button id="exportBtn">匿名の統計をコピー（任意・改善のため共有OK）</button>
+    <button id="resetBtn">データをリセット</button>
+  </section>
+
+  <!-- 結果 -->
+  <section id="result" class="screen">
+    <h2 id="resTitle"></h2>
+    <div id="resBody"></div>
+    <button data-go="town">街へ戻る</button>
+  </section>
+</main>
+
+<footer>無料・登録不要・データはこの端末にのみ保存されます。 <a href="https://github.com/" id="repoLink">改善提案はこちら</a></footer>
+<script src="data/words.js"></script>
+<script src="game.js"></script>
+<script>if ("serviceWorker" in navigator && location.protocol.startsWith("http")) navigator.serviceWorker.register("sw.js").catch(() => {});</script>
+</body>
+</html>

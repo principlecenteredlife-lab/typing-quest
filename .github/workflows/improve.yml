@@ -1,0 +1,40 @@
+name: weekly-self-improve
+on:
+  schedule:
+    - cron: "0 3 * * 1"   # 毎週月曜
+  workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+jobs:
+  improve:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      # プレイヤーが Issue(telemetry ラベル) に貼った匿名統計を取り込む
+      - name: Ingest telemetry issues
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs");
+            fs.mkdirSync("data/telemetry", { recursive: true });
+            const issues = await github.paginate(github.rest.issues.listForRepo, { ...context.repo, labels: "telemetry", state: "open" });
+            for (const is of issues) {
+              try {
+                const j = JSON.parse((is.body || "").trim().replace(/^```(json)?|```$/g, ""));
+                if (j.v === 1) fs.writeFileSync(`data/telemetry/issue-${is.number}.json`, JSON.stringify(j));
+                await github.rest.issues.update({ ...context.repo, issue_number: is.number, state: "closed" });
+              } catch (e) { core.warning(`issue ${is.number}: ${e.message}`); }
+            }
+      - run: node tools/improve.mjs
+      - run: npm install
+      - run: npm test     # 設定検証+自動プレイ。失敗したらPRを作らない
+      - uses: peter-evans/create-pull-request@v6
+        with:
+          branch: auto/improve
+          title: "auto: 週次バランス調整・改善レポート"
+          body: "tools/improve.mjs による自動調整です。data/reports/latest.md を確認してマージしてください。"
+          commit-message: "auto: weekly balance tuning"

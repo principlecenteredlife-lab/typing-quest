@@ -1,0 +1,11 @@
+{
+  "name": "タイピングクエスト",
+  "short_name": "タイピングクエスト",
+  "description": "無料のブラインドタッチ練習RPG",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#14162b",
+  "theme_color": "#1f2347",
+  "lang": "ja",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}

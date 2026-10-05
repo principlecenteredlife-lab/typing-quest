@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "enemyHpMult": 1.0,
+  "enemyAtkMult": 1.0,
+  "attackIntervalMult": 1.0,
+  "goldMult": 1.0,
+  "notes": "このファイルは tools/improve.mjs により自動調整されます"
+}

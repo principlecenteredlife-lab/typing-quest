@@ -1,0 +1,46 @@
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,"Hiragino Sans","Meiryo",sans-serif;background:#14162b;color:#eee}
+header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding:10px 20px;background:#1f2347}
+header h1{font-size:20px;margin:0}
+#status{margin-left:auto;font-size:14px}
+button{background:#4b5bd6;color:#fff;border:0;border-radius:6px;padding:8px 14px;margin:3px;cursor:pointer;font-size:14px}
+button:hover{background:#6573f0}
+button:disabled{background:#444;cursor:not-allowed}
+main{max-width:860px;margin:0 auto;padding:16px}
+.screen{display:none}.screen.active{display:block}
+.card{background:#232852;border-radius:8px;padding:10px 14px;margin:6px 0;display:flex;justify-content:space-between;align-items:center}
+.card.locked{opacity:.45}
+.bars{display:flex;gap:20px}.bars>div{flex:1;font-size:14px}
+.bar{height:12px;background:#333;border-radius:6px;overflow:hidden}
+.bar div{height:100%;background:#3ecf6e;width:100%;transition:width .2s}
+.bar .red{background:#e0475b}
+#enemy{font-size:90px;text-align:center;margin:10px}
+#enemy.hit{animation:shake .2s}
+@keyframes shake{25%{transform:translateX(-12px)}75%{transform:translateX(12px)}}
+#msg{text-align:center;min-height:24px;color:#ffd866}
+#word{text-align:center;margin:10px 0}
+#jp{font-size:22px;color:#9aa}
+#romaji{font-size:44px;font-family:monospace;letter-spacing:4px}
+#romaji .ok{color:#3ecf6e}#romaji .cur{background:#4b5bd6;border-radius:4px}
+#romaji.miss{color:#e0475b}
+#combo{text-align:center;color:#ff9f43;height:24px}
+#kbd{display:flex;flex-direction:column;align-items:center;gap:4px;margin:10px 0}
+.krow{display:flex;gap:4px}
+.key{width:38px;height:38px;border-radius:6px;background:#2c3263;display:flex;align-items:center;justify-content:center;font-family:monospace;text-transform:uppercase}
+.key.next{outline:3px solid #ffd866}
+.key.home::after{content:"_";position:absolute;margin-top:20px}
+#heat .key{width:44px;height:44px;color:#000;font-weight:bold}
+#heat{display:flex;flex-direction:column;align-items:center;gap:4px;margin:12px 0}
+table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid #333;padding:4px 8px;text-align:left}
+footer{text-align:center;font-size:12px;color:#889;padding:20px}
+footer a{color:#9ab}
+
+@media (max-width:640px){
+  header{padding:8px 10px}
+  #romaji{font-size:30px;letter-spacing:2px;word-break:break-all}
+  #enemy{font-size:64px}
+  .key{width:26px;height:30px;font-size:12px}
+  #heat .key{width:28px;height:30px}
+  .card{flex-wrap:wrap;gap:4px}
+  .bars{flex-direction:column;gap:6px}
+}

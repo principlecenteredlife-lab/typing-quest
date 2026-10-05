@@ -1,0 +1,11 @@
+{
+  "name": "typing-quest",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node tools/check.mjs",
+    "test": "node tools/check.mjs && node tools/playtest.mjs",
+    "improve": "node tools/improve.mjs"
+  },
+  "devDependencies": { "jsdom": "^26.0.0" }
+}
