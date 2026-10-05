@@ -1,6 +1,6 @@
 // オフライン対応。静的ファイルは cache-first、バランス設定は network-first（自動改善を即反映）
-const CACHE = "typingquest-v1";
-const FILES = ["./", "index.html", "style.css", "game.js", "data/words.js", "data/balance.json", "manifest.webmanifest", "icon.svg"];
+const CACHE = "typingquest-v2";
+const FILES = ["./", "index.html", "style.css", "game.js", "data/words.js", "data/balance.json", "manifest.webmanifest", "icon.svg", "privacy.html", "ads-config.js", "ads.js"];
 
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES))); self.skipWaiting(); });
 self.addEventListener("activate", e => {

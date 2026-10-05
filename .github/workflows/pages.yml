@@ -16,7 +16,7 @@ jobs:
       - name: Build site (テスト用ファイルは含めない)
         run: |
           mkdir dist
-          cp -r index.html style.css game.js sw.js manifest.webmanifest icon.svg data dist/
+          cp -r index.html privacy.html ads.js ads-config.js style.css game.js sw.js manifest.webmanifest icon.svg data dist/
           rm -rf dist/data/telemetry
       - uses: actions/upload-pages-artifact@v3
         with: { path: dist }
